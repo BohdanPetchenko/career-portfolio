@@ -1,26 +1,263 @@
 @import "tailwindcss";
 
+/* Hunter & Cream (old money) — tokens from design/DESIGN_BRIEF.md. Light only. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --hunter: #1f3a2e;
+  --hunter-2: #3b4f44;
+  --ink: #1a1a17;
+  --ink-2: #2e3b33;
+  --stone: #8e8676;
+  --muted: #5e584d;
+  --muted-dark: #bdb6a5;
+  --line: #d4cbbb;
+  --cream: #eae3d6;
+  --cream-2: #f2ede3;
+  --sand: #e2d9c8;
+  --sand-2: #d6cbb6;
+  --brass: #a88b5a;
+  --on-dark: #d8d0bf;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-hunter: var(--hunter);
+  --color-hunter-2: var(--hunter-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-stone: var(--stone);
+  --color-muted: var(--muted);
+  --color-muted-dark: var(--muted-dark);
+  --color-line: var(--line);
+  --color-cream: var(--cream);
+  --color-cream-2: var(--cream-2);
+  --color-sand: var(--sand);
+  --color-sand-2: var(--sand-2);
+  --color-brass: var(--brass);
+  --color-on-dark: var(--on-dark);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-cormorant);
+
+  --ease-out-expo: var(--ease-out);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--cream);
+  color: var(--ink);
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--hunter);
+  color: var(--cream-2);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Reveal on enter (see components/motion/Reveal.tsx) */
+[data-reveal="hidden"] {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(6px);
+}
+[data-reveal="shown"] {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out),
+    filter 0.8s var(--ease-out);
+}
+
+/* Global pause for infinite decorative motion (WCAG 2.2.2) */
+html[data-motion="paused"] .orbit-ring,
+html[data-motion="paused"] .orbit-badge,
+html[data-motion="paused"] .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Typographic helpers */
+.label {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* Infinite loops live in CSS (cheap, compositor-only). */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin-rev {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes pulse-dot {
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.animate-scroll-line {
+  animation: scroll-line 2.2s var(--ease-in-out) infinite;
+}
+.animate-rise {
+  animation: rise 1.2s var(--ease-out) both;
+}
+.animate-fade-up {
+  animation: fade-up 1s var(--ease-out) both;
+}
+
+.orbit-ring {
+  animation: spin var(--orbit-duration, 90s) linear infinite var(--orbit-direction, normal);
+}
+.orbit-badge {
+  animation: spin-rev var(--orbit-duration, 90s) linear infinite var(--orbit-direction, normal);
+}
+.orbit:hover .orbit-ring,
+.orbit:hover .orbit-badge,
+.marquee-track:hover .animate-marquee,
+.marquee-track:focus-within .animate-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .orbit-ring,
+  .orbit-badge,
+  .animate-marquee,
+  .animate-pulse-dot,
+  .animate-scroll-line {
+    animation: none !important;
+  }
+}
+
+@keyframes badge-sway {
+  0%,
+  100% {
+    transform: rotate(2.5deg);
+  }
+  50% {
+    transform: rotate(-2.5deg);
+  }
+}
+.badge-sway {
+  transform-origin: top center;
+  animation: badge-sway 4.5s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .badge-sway {
+    animation: none !important;
+  }
+}
+
+/* Case visuals */
+@keyframes case-drag {
+  0%,
+  20% {
+    transform: translate(0, 0) rotate(0);
+  }
+  45%,
+  55% {
+    transform: translate(172px, 40px) rotate(3deg);
+  }
+  80%,
+  100% {
+    transform: translate(172px, 40px) rotate(0);
+  }
+}
+@keyframes case-fill {
+  from {
+    width: 8%;
+  }
+  to {
+    width: 92%;
+  }
+}
+.case-drag {
+  animation: case-drag 3.2s var(--ease-in-out) infinite;
+}
+.case-fill {
+  animation: case-fill 4s linear infinite;
 }
