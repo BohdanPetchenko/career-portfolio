@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
 import { MotionProvider } from "@/components/motion/MotionProvider";
@@ -53,6 +54,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <MotionProvider>{children}</MotionProvider>
+        {/* Only on Vercel: elsewhere the /_vercel/insights script doesn't exist and would 404. */}
+        {process.env.VERCEL && <Analytics />}
       </body>
     </html>
   );
