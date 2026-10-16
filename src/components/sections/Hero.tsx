@@ -96,7 +96,7 @@ function HookAndCtas() {
           href="#contact"
           className="flex-1 border border-hunter bg-cream-2 py-4 text-center text-xs font-semibold uppercase tracking-[0.08em] lg:flex-none lg:border-0 lg:border-b lg:border-brass lg:bg-transparent lg:px-0 lg:py-1.5"
         >
-          Let&apos;s talk ↗
+          Let&apos;s talk ↗︎
         </a>
       </div>
     </div>

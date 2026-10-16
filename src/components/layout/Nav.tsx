@@ -55,7 +55,7 @@ export function Nav({ hasCv = false }: { hasCv?: boolean }) {
             href="#contact"
             className="hidden rounded-full bg-hunter px-[18px] py-3 text-xs font-medium uppercase tracking-[0.06em] text-cream-2 transition-colors hover:bg-hunter-2 md:inline-block"
           >
-            Let&apos;s talk ↗
+            Let&apos;s talk ↗︎
           </a>
           <button
             ref={triggerRef}
@@ -111,10 +111,10 @@ export function Nav({ hasCv = false }: { hasCv?: boolean }) {
           <span>{site.email}</span>
           <div className="flex gap-5">
             <a href={site.links.telegram} target="_blank" rel="noreferrer">
-              Telegram ↗
+              Telegram ↗︎
             </a>
             <a href={site.links.linkedin} target="_blank" rel="noreferrer">
-              LinkedIn ↗
+              LinkedIn ↗︎
             </a>
             {hasCv && (
               <a href={site.links.cv} download className="text-cream">

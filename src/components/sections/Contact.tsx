@@ -6,8 +6,8 @@ import { hasCv } from "@/lib/cv";
 
 export function Contact() {
   const links = [
-    { label: "Telegram ↗", href: site.links.telegram, external: true },
-    { label: "LinkedIn ↗", href: site.links.linkedin, external: true },
+    { label: "Telegram ↗︎", href: site.links.telegram, external: true },
+    { label: "LinkedIn ↗︎", href: site.links.linkedin, external: true },
     ...(hasCv ? [{ label: "CV (PDF) ↓", href: site.links.cv, external: false }] : []),
   ];
 
@@ -21,7 +21,7 @@ export function Contact() {
       <h2 id="contact-title" className="sr-only">
         Let&apos;s talk
       </h2>
-      <Marquee items={["Let's talk ↗"]} className="mt-9 font-serif text-[120px] leading-[0.9] md:text-[220px]" />
+      <Marquee items={["Let's talk ↗︎"]} className="mt-9 font-serif text-[120px] leading-[0.9] md:text-[220px]" />
 
       <div className="mx-auto flex max-w-[1440px] flex-wrap items-end justify-between gap-10 px-4 pt-14 md:px-[60px]">
         <div>

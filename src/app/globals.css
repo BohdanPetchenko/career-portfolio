@@ -50,6 +50,12 @@ html {
   color-scheme: light;
 }
 
+/* Safety net against sideways scroll on phones; clip (unlike hidden) keeps position: sticky working. */
+html,
+body {
+  overflow-x: clip;
+}
+
 body {
   background: var(--cream);
   color: var(--ink);

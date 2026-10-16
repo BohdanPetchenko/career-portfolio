@@ -23,7 +23,8 @@ export function WorkExplorer() {
               <button
                 type="button"
                 aria-expanded={isActive}
-                aria-controls={`case-m-${c.id}`}
+                // The in-place panel shows on mobile, the preview on desktop; only the active case has them.
+                aria-controls={isActive ? `case-m-${c.id} case-preview` : undefined}
                 onClick={() => setActive(i)}
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
@@ -49,7 +50,7 @@ export function WorkExplorer() {
         })}
       </ol>
 
-      <aside aria-live="polite" className="sticky top-24 hidden min-w-0 flex-[1_1_440px] md:block">
+      <aside className="sticky top-24 hidden min-w-0 flex-[1_1_440px] md:block">
         <AnimatePresence mode="wait" initial={false}>
           <m.div
             key={current.id}

@@ -1,10 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function CopyEmail({ email }: { email: string }) {
   const [status, setStatus] = useState<"idle" | "copied" | "failed">("idle");
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  useEffect(() => () => clearTimeout(timer.current), []);
 
   const copy = async () => {
     try {
@@ -27,7 +29,7 @@ export function CopyEmail({ email }: { email: string }) {
         }`}
       >
         {email}
-        <span className="label text-[11px] tracking-[0.12em]">{status === "copied" ? "Copied ✓" : "Copy"}</span>
+        <span className="label text-[11px] tracking-[0.12em]">{status === "copied" ? "Copied ✓" : status === "failed" ? "Copy failed" : "Copy"}</span>
       </button>
       <a href={`mailto:${email}?subject=${encodeURIComponent("A role for you")}`} className="label text-[11px] tracking-[0.12em] text-on-dark underline-offset-4 hover:underline">
         Open in mail app

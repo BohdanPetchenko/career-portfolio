@@ -3,11 +3,11 @@ import type { CaseVisual as Kind } from "@/content/work";
 /** Small animated illustrations for each case (CSS only; decorative). */
 export function CaseVisual({ kind }: { kind: Kind }) {
   return (
-    <div aria-hidden="true" className="relative flex h-[280px] items-center justify-center overflow-hidden bg-sand font-mono text-[10px]">
+    <div aria-hidden="true" className="relative flex h-[280px] items-center justify-center overflow-hidden bg-sand px-4 font-mono text-[10px]">
       {kind === "boards" && (
-        <div className="flex gap-3.5">
+        <div className="flex w-full max-w-[334px] gap-3.5">
           {["Prospects · 24", "Contacted · 9"].map((col, i) => (
-            <div key={col} className="flex w-[160px] flex-col gap-2 rounded-lg bg-cream-2 p-2.5">
+            <div key={col} className="flex min-w-0 flex-1 flex-col gap-2 rounded-lg bg-cream-2 p-2.5">
               <span className="tracking-[0.12em] uppercase">{col}</span>
               {i === 0 && <span className="case-drag relative z-10 h-8 rounded-md bg-hunter shadow-[0_12px_24px_-10px_rgba(0,0,0,.5)]" />}
               {i === 1 && <span className="border-t border-dashed border-stone pt-1 text-[8px] text-muted">DIVIDER · VERIFIED</span>}
@@ -18,20 +18,20 @@ export function CaseVisual({ kind }: { kind: Kind }) {
         </div>
       )}
       {kind === "migration" && (
-        <div className="flex items-center gap-5 text-[11px]">
-          <div className="flex h-[140px] w-[120px] items-center justify-center rounded-lg" style={{ background: "repeating-linear-gradient(45deg,#8e8676 0 6px,#bdb6a5 6px 12px)" }}>
+        <div className="flex w-full max-w-[330px] items-center gap-3 text-[11px] md:gap-5">
+          <div className="flex h-[140px] w-[34%] flex-none items-center justify-center rounded-lg" style={{ background: "repeating-linear-gradient(45deg,#8e8676 0 6px,#bdb6a5 6px 12px)" }}>
             legacy.php
           </div>
           <span className="text-2xl">→</span>
-          <div className="flex w-[170px] flex-col gap-1.5">
-            <span className="rounded-md bg-hunter p-3 text-cream-2">Controllers · 12</span>
-            <span className="rounded-md bg-hunter-2 p-3 text-cream-2">Services · 15</span>
-            <span className="rounded-md bg-stone p-3 text-ink">MySQL · ~40 tables</span>
+          <div className="flex min-w-0 flex-1 flex-col gap-1.5">
+            <span className="rounded-md bg-hunter whitespace-nowrap p-2.5 md:p-3 text-cream-2">Controllers · 12</span>
+            <span className="rounded-md bg-hunter-2 whitespace-nowrap p-2.5 md:p-3 text-cream-2">Services · 15</span>
+            <span className="rounded-md bg-stone whitespace-nowrap p-2.5 md:p-3 text-ink">MySQL · ~40 tables</span>
           </div>
         </div>
       )}
       {kind === "errors" && (
-        <div className="w-[340px] rounded-lg bg-hunter p-3.5 leading-[1.8] text-cream">
+        <div className="w-full max-w-[340px] rounded-lg bg-hunter p-3.5 leading-[1.8] text-cream">
           <div className="flex justify-between">
             <span>TypeError · board.tsx:212</span>
             <span className="animate-pulse-dot text-brass">● spike</span>
@@ -42,11 +42,11 @@ export function CaseVisual({ kind }: { kind: Kind }) {
               <span key={i} className={`flex-1 ${h > 90 ? "bg-brass" : "bg-hunter-2"}`} style={{ height: `${h}%` }} />
             ))}
           </div>
-          <div className="mt-2 text-muted-dark">▶ session replay · source maps ✓</div>
+          <div className="mt-2 text-muted-dark">▶︎ session replay · source maps ✓</div>
         </div>
       )}
       {kind === "live" && (
-        <div className="w-[340px] overflow-hidden rounded-lg bg-hunter text-cream">
+        <div className="w-full max-w-[340px] overflow-hidden rounded-lg bg-hunter text-cream">
           <div className="flex h-[140px] items-center justify-center bg-gradient-to-br from-hunter-2 to-hunter font-serif text-5xl">2 : 1</div>
           <div className="flex items-center gap-2.5 px-3 py-2.5">
             <span className="animate-pulse-dot rounded-sm bg-cream px-1.5 py-0.5 text-hunter">LIVE</span>
@@ -74,7 +74,7 @@ export function CaseVisual({ kind }: { kind: Kind }) {
         </div>
       )}
       {kind === "widgets" && (
-        <div className="w-[340px] overflow-hidden rounded-lg bg-cream-2 shadow-[0_18px_36px_-20px_rgba(0,0,0,.45)]">
+        <div className="w-full max-w-[340px] overflow-hidden rounded-lg bg-cream-2 shadow-[0_18px_36px_-20px_rgba(0,0,0,.45)]">
           <div className="flex items-center gap-1.5 bg-stone px-3 py-2">
             <span className="size-1.5 rounded-full bg-cream-2" />
             <span className="size-1.5 rounded-full bg-cream-2" />
@@ -92,7 +92,7 @@ export function CaseVisual({ kind }: { kind: Kind }) {
         </div>
       )}
       {kind === "funnel" && (
-        <div className="flex w-[320px] flex-col gap-1.5 uppercase tracking-[0.08em]">
+        <div className="flex w-full max-w-[320px] flex-col gap-1.5 uppercase tracking-[0.08em]">
           {[
             ["Visit", 100],
             ["Sign up", 64],
@@ -108,10 +108,10 @@ export function CaseVisual({ kind }: { kind: Kind }) {
         </div>
       )}
       {kind === "ai" && (
-        <ol className="flex items-center gap-2 text-[10px] uppercase tracking-[0.08em]">
+        <ol className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.06em] md:gap-2 md:tracking-[0.08em]">
           {["Plan", "Agents", "Review", "Checks"].map((s, i) => (
-            <li key={s} className="flex items-center gap-2">
-              <span className={`rounded-full px-3 py-2.5 ${i === 1 ? "bg-hunter text-cream-2" : "border border-hunter"}`}>{s}</span>
+            <li key={s} className="flex items-center gap-1.5 md:gap-2">
+              <span className={`rounded-full px-2.5 py-2.5 md:px-3 ${i === 1 ? "bg-hunter text-cream-2" : "border border-hunter"}`}>{s}</span>
               {i < 3 && <span>→</span>}
             </li>
           ))}

@@ -33,7 +33,7 @@ export function Stack() {
             <Reveal
               as="li"
               key={layer.name}
-              className={`grid gap-4 border-t border-line px-0 py-6 md:grid-cols-[220px_minmax(0,300px)_minmax(0,1fr)] md:items-center md:gap-7 md:px-6 ${
+              className={`grid gap-4 border-t border-line px-3 py-6 md:grid-cols-[220px_minmax(0,300px)_minmax(0,1fr)] md:items-center md:gap-7 md:px-6 ${
                 i % 2 ? "" : "bg-cream"
               }`}
             >

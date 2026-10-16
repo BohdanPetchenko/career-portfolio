@@ -55,7 +55,7 @@ test("CV links only render when the PDF exists", async ({ page, request }) => {
   await page.goto("/");
   const cvLinks = page.locator('a[href="/cv.pdf"]');
   const res = await request.get("/cv.pdf");
-  // header, mobile menu, Work CTA band, Work & study, contact
+  // header, mobile menu, Work & study, contact
   if (res.ok()) await expect(cvLinks).toHaveCount(4);
   else await expect(cvLinks).toHaveCount(0);
 });

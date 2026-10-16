@@ -54,11 +54,14 @@ export function StackOrbit() {
               </div>
             );
           })}
-          <div className="absolute left-1/2 top-1/2 flex size-[27.5%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-hunter text-center text-cream-2">
-            <p className="font-serif text-[clamp(32px,5vw,52px)] leading-[0.9]">
+          {/* Text scales with the circle (container units), so it never spills out on narrow screens. */}
+          <div className="@container absolute left-1/2 top-1/2 flex size-[27.5%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-hunter text-center text-cream-2">
+            <p className="whitespace-nowrap font-serif text-[28cqw] leading-[0.9]">
               5+ <span className="text-[0.6em] italic">yrs</span>
             </p>
-            <p className="label mt-2 text-[9px] tracking-[0.16em] text-on-dark">in production</p>
+            <p className="mt-[5cqw] whitespace-nowrap font-mono text-[clamp(7px,6.5cqw,11px)] uppercase tracking-[0.14em] text-on-dark">
+              in production
+            </p>
           </div>
         </div>
       </div>

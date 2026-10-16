@@ -69,7 +69,7 @@ export function HowIWork() {
               href="#contact"
               className="border-b border-brass pb-1 font-sans text-xs font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:text-hunter-2"
             >
-              Let&apos;s talk ↗
+              Let&apos;s talk ↗︎
             </a>
           </p>
         </div>
